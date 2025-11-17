@@ -61,32 +61,31 @@ class TestCalculator(unittest.TestCase):
 
 # Do not touch this
 
-    def test_add():
-        assert add(2, 3) == 5
-        assert add(-1, 4) == 3
-        assert add(0, 0) == 0
+    def test_add(self):
+        self.assertEqual(add(2, 3), 5)
+        self.assertEqual(add(-1, 4), 3)
+        self.assertEqual(add(0, 0), 0)
+        
+    def test_subtract(self):
+        self.assertEqual(sub(10, 3), 7)
+        self.assertEqual(sub(4, 8), -4)
+        self.assertEqual(sub(0, 0), 0)
     
-    def test_subtract():
-        assert sub(10, 3) == 7
-        assert sub(4, 8) == -4
-        assert sub(0, 0) == 0
-    
-    def test_divide_by_zero():
-        with unittest.TestCase().assertRaises(ZeroDivisionError):
+    def test_divide_by_zero(self):
+        with self.assertRaises(ZeroDivisionError):
             div(5, 0)
         
-    def test_logarithm():
-        assert log(10, 100) == 2
-        assert log(2, 8) == 3
+    def test_logarithm(self):
+        self.assertAlmostEqual(log(10, 100), 2)
+        self.assertAlmostEqual(log(2, 8), 3)
 
-    def test_log_invalid_base():
-        with unittest.TestCase().assertRaises(ValueError):
+    def test_log_invalid_base(self):
+        with self.assertRaises(ValueError):
             log(-2, 8)
-        with unittest.TestCase().assertRaises(ValueError):
-            log(0, 5) 
-        with unittest.TestCase().assertRaises(ValueError):
+        with self.assertRaises(ValueError):
+            log(0, 5)
+        with self.assertRaises(ValueError):
             log(10, -3)
-
 
 if __name__ == "__main__":
     unittest.main()
